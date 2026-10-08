@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+   <style>
+   .b{ 
+    bacground-color: pink;
+    broder:200px;
+    height:700px;
+    width: 500px;
+    color:red;
+    font-weight:bold;
+    broder-radius:6px;
+   }
+.b:hover{
+    bacground-color: bur lywood;
+    broder-bottom: solid 2px black;
+}
+</style>
+</head>
+<body> <br> <br> <br> <br> <br> <BR> 
+<center>
+<form>
+<input tupe="submit" class="b">
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,187 @@
+##sql practice questions-ddl|dml|dql|tcl
+1. Skip to content
+Navigation Menu
+
+Brijesh1990
+/
+data_analytics-data_science_11amTTS
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Security and quality
+data_analytics-data_science_11amTTS/data_analytics/module-2-SQL_Database
+/question_task.md
+Go to file
+Brijesh1990
+Brijesh1990
+06-10-2026 data uploaded
+09e9728
+ · 
+10 minutes ago
+128 lines (111 loc) · 7.47 KB
+
+Preview
+
+Code
+
+Blame
+SQL Practice Questions — DDL | DML | DQL | TCL
+Intermediate Level — 1–50
+DDL
+ 1.What is the diCREATE, ALTER, DROP, and TRUNCATE in SQL?
+= **CREATE**
+      CREATE is used to create database and table to use it
+
+   **sytex** 
+  '''
+     create database database name,
+
+  '''
+  **create database exampal** 
+  (  
+     create database data_analytics_11am_tts,
+
+  )
+
+  **create table exampal**
+       create table tbl_emploee 
+  (
+    empid  int AUTO_INCREMENT primary key,
+    name varchar(250),
+    age int,
+    addresh text,
+    salary decimal(10,2),
+    city varchar(100)
+    department varchar(200) 
+
+  );
+
+  **ALTER**
+
+   alter is use to add new column after create a 
+   table
+   alter is used to modify |rename|or delete acolums
+    name is table
+   alter is used to add unique key of any column name
+
+**exampal**
+
+
+
+
+
+
+
+
+
+
+
+2.How do you create a table named employees with columns employee_id, name, salary, and department_id?
+How do you add a new column email to an existing employees table?
+How do you modify the data type of the salary column?
+How do you rename a column in an existing table?
+How do you rename the employees table to staff?
+How do you remove the email column from the employees table?
+How do you create a table with a primary key?
+How do you create a table with a NOT NULL constraint?
+How do you create a table with a UNIQUE constraint?
+How do you create a table with a DEFAULT constraint?
+How do you create a table with a CHECK constraint ensuring salary is greater than 0?
+How do you create a foreign key between employees and departments?
+What happens to the table structure and data when TRUNCATE is executed?
+What is the difference between DROP TABLE and TRUNCATE TABLE?
+DML
+How do you insert a single employee record into the employees table?
+How do you insert multiple employee records using a single INSERT statement?
+How do you update the salary of a specific employee?
+How do you increase the salary of all employees by 10%?
+How do you update employees belonging to a specific department?
+How do you delete a specific employee using DELETE?
+How do you delete all employees belonging to a specific department?
+What is the difference between DELETE and TRUNCATE?
+How can you copy data from one table into another using INSERT INTO ... SELECT?
+How do you update multiple columns of a record in a single UPDATE statement?
+How do you delete employees whose salary is below a specific amount?
+How do you insert a record while explicitly specifying only selected columns?
+How do you insert records from a SELECT query into another table?
+What happens if an UPDATE statement is executed without a WHERE clause?
+What happens if a DELETE statement is executed without a WHERE clause?
+DQL
+How do you retrieve all records from the employees table?
+How do you retrieve only the name and salary columns from employees?
+How do you retrieve employees whose salary is greater than 50,000?
+How do you retrieve employees belonging to either the IT or HR department?
+How do you sort employees by salary in descending order?
+How do you retrieve unique department IDs from the employees table?
+How do you find employees whose names start with the letter A?
+How do you find employees whose names contain the word an?
+How do you retrieve employees whose salary falls between 40,000 and 80,000?
+How do you retrieve employees whose department ID is NULL?
+How do you calculate the average salary of all employees?
+How do you find the maximum and minimum salary from the employees table?
+How do you count the total number of employees?
+How do you count employees in each department?
+How do you find departments having more than five employees?
+How do you retrieve the top five highest-paid employees?
+How do you join employees with departments to display employee names and department names?
+What is the difference between WHERE and HAVING?
+How do you find employees who do not have a matching department?
+How do you retrieve employees sorted first by department and then by salary?
+TCL
+What is the purpose of COMMIT in SQL?
+What is the purpose of ROLLBACK in SQL?
+What is a SAVEPOINT?
+How do you create a savepoint named sp1?
+How do you rollback a transaction to a specific savepoint?
+What happens to uncommitted changes when a ROLLBACK is executed?
+What happens to savepoints after a COMMIT?
+How does transaction control differ from data manipulation?
+Can a transaction contain multiple INSERT, UPDATE, and DELETE statements?
+Why is transaction control important when modifying critical business data?
+Advanced Level — 61–100
+DDL
+How would you design a normalized database schema for customers, orders, products, and order_items?
+How would you create a composite primary key for an order_items table?
+How would you create multiple foreign keys in a single table?
+How would you define a foreign key with ON DELETE CASCADE?
+How would you define a foreign key with ON DELETE SET NULL?
+What problems can occur when altering a table that contains millions of rows?
+How would you add a NOT NULL constraint to an existing column that already contains NULL values?
+How would you add a UNIQUE constraint to an existing column containing duplicate values?
+What is the difference between a primary key, unique key, and foreign key?
+How would you design constraints to prevent duplicate order records?
+How would you create a table containing generated or identity columns?
+What is the difference between a clustered and non-clustered index?
+How would you create an index on multiple columns?
+When would you create a composite index instead of multiple single-column indexes?
+How can database schema changes affect existing applications and queries?
+DML
+How would you update employee salaries based on the average salary of their department?
+How would you update records in one table using data from another table?
+How would you delete duplicate records while keeping only one record from each duplicate group?
+How would you delete customers who have never placed an order?
+How would you insert only new customers from a staging table into the main customer table?
+How would you synchronize records between a source table and a target table?
+How would you perform an upsert operation when a record already exists?
+How would you update multiple rows with different values in a single statement?
+How would you increase salaries by different percentages based on employee departments?
+How would you move data from an active table to an archive table and then remove it from the active table?
+How would you safely delete millions of records without causing a long-running transaction?
+What issues can occur when multiple users update the same row simultaneously?
+How can foreign key constraints affect DELETE and UPDATE operations?
+How would you use a staging table to validate data before inserting it into a production table?
+How would you handle an INSERT operation when some source records violate a unique constraint?
+DQL
+How would you find the second-highest salary without using LIMIT or TOP?
+How would you find the third-highest salary using a window function?
+How would you find the highest-paid employee in each department?
+How would you find employees whose salary is greater than their department's average salary?
+How would you find duplicate records based on multiple columns?
+How would you find customers who placed orders in every month of a given year?
+How would you find the top three highest-selling products in each category?
+How would you calculate a running total of sales ordered by transaction date?
+How would you find consecutive days on which a customer placed orders?
+How would you write a query to identify employees whose salary increased compared with their previous salary record?
