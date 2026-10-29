@@ -1,0 +1,98 @@
+1. open your sql aditer and  run a query to select all colums form
+a table named returants using SELECT*FROM restureants,
+'''
+  ![alt text](image.png)
+
+    
+'''  
+#snytex
+""
+  create table returant(
+      ret_id int auto_incriment primary key,
+      rest_name varchar(255),
+      category_name varchar(255),
+
+      inster colums,
+      rest_name(
+        akhasr dosa portal,vanvagdo,21food palza,mandvi dabely,chaniz point
+      ) 
+      catogary_name(
+            dosa powbhaji pulav,gujrati,panjabifood,piza burgar,dabely samosa, manchurian,nudlas
+
+      )
+
+  )
+""
+
+2. write an sql query to display only the name and rating columas form 
+the table zomato_reviews.
+
+'''
+ ![alt text](image-1.png)
+'''
+#sytex
+
+create table zomato(
+    zomato_id int auto_incriment primary key,
+    coutmer_name varchar(255),
+    email varchar(255),
+    phon bigint ,
+    rating enum('*','**','***','****','*****' )
+    commet text
+
+    add rows in zomato table colums,
+
+
+    coustmer nname
+    priyanshu
+    meet
+    raj
+    rit 
+    dev
+
+    email id
+    priyanshu@gmail.com 
+    meet@gmail.com 
+    raj@gmail.com 
+    rit@gmail.com 
+    dev@gmail.com
+
+    phone
+    9687985744
+    9825178528
+    9879778217
+    9879778228
+    9825176528
+
+    comment
+    very good
+    very spisc food
+    very hot,
+    good serves
+    i am so happy to your servic 
+    
+
+)
+
+3. write a sql query to select the movie_name and 
+relese_year colums form a table called movies,but 
+rename movie_name as 'title' and relese_year as
+'year relesed' in the output using the as keyword
+
+'''
+   SELECT name as title,relesa_year as 
+   "year relesed" from movie
+  
+
+
+'''
+4. 
+
+
+
+
+
+
+
+
+
