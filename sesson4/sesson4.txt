@@ -1,0 +1,60 @@
+1. Tasks
+1.
+Write an SQL query to find all restaurants in a table 
+called Restaurants whose names end with 'Cafe' using the LIKE operator.
+
+'''
+C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793423910534.png
+'''
+sytex 
+'''
+    select * from 'resturants' where name like '%cafa';
+
+'''
+defination
+->create returanst table in this defain a name rating than this query 
+is used to defain like cafa name 
+
+
+2.
+In a Flipkart-style Products table, use the BETWEEN operator to select
+ all products with a price between 500 and 1500 rupees.
+
+
+ '''
+ C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793679199934.png
+ '''
+   sytex
+ '''
+    select * from flip_card where price between 500 and 1000;
+ '''
+3.
+Write an SQL query to display all users from a Users table whose city
+ is either 'Ahmedabad', 'Surat', or 'Vadodara' using the IN operator.
+ '''
+ SELECT * 
+FROM Users 
+WHERE city IN ('Ahmedabad', 'Surat', 'Vadodara');
+ '''
+ '''
+C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793679968625.png
+ '''
+4. Given a table called Songs with columns song_name and artist_name, 
+
+find all songs where the artist_name contains the letter sequence 'ar'
+
+ anywhere in the name using the LIKE operator.<br><br><em><strong>Hint:
+
+ </strong> Use wildcards on both sides of the pattern.</em>
+ sytex
+'''
+SELECT song_name, artist_name 
+FROM Songs 
+WHERE artist_name LIKE '%ar%';
+'''
+
+'''
+C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793680773909.png
+
+
+'''
