@@ -1,0 +1,48 @@
+1. write sql query to display the total number of order placed by each
+user in a food_orders table grouped by user_id
+
+'''
+select user_id, count(*) as total_orders
+from food_orders
+group by user_id
+
+'''
+
+2. using 'transaction' table with columns (transaction_id,user_id 
+amount ,pyment_method), write an sql query to show the total amount
+spend by each pyment_method.
+
+
+'''
+    select pyment_method, sum(amount)as total_amount
+    from transaction
+    group by pyment_method;
+
+
+'''
+
+3.given a'movies 'table with colums (movie_id,genre,box_offec_collection)
+, write an sql query to display each genre and its total box_offec_collection,
+but only show genre where the total collection is above 10 crore<br>
+<br><em> <sotrng>hint</sotrng> use group by and having togather to 
+filter the aggregated result</em>
+
+'''
+    select gender, sum (box_offec_collection) as total_collection
+    from movies
+    group by gender 
+    having sum (box_offec_collection) > 10;
+
+'''
+
+
+4. supprot you have a'playlist' table with cloums (playlist_id,user_id ,
+song_id ,duration), write an sql query to find users who have created playlist
+with a combind song duration of more than 2 hours(7200 second),sowing 
+user_id and total durtion.
+'''
+   select user_id ,sum(duration) as total_duration 
+   from playlist
+   group by user_id
+   having sum(duration) > 100; 
+'''
