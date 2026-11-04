@@ -1,0 +1,70 @@
+1.
+Write an SQL query using the SUM() function to calculate the total 
+amount spent by users on food orders in a table food_orders 
+(columns: order_id, user_id, amount) — imagine it's like 
+Zomato's order history.
+sytex
+'''
+SELECT user_id, SUM(amount) AS total_spent
+FROM food_orders
+GROUP BY user_id;
+
+
+SELECT SUM(amount) AS grand_total_spent
+FROM food_orders;
+
+  
+''
+C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793724537094.png
+''
+'''
+C:\Users\home\AppData\Roaming\Code\User\workspaceStorage\vscode-chat-images\image-1793724634446.png
+'''
+2.
+Using the COUNT() function, find out how many songs a user has added to 
+their playlist in a table spotify_playlists 
+(columns: playlist_id, user_id, song_id).
+
+'''
+  select user_id  , count (song_id) as total_songs
+  from spotifive_palylists
+  GROUP by user_id
+
+'''
+3.
+Write an SQL query to get the average rating given to a movie in a 
+table bookmyshow_reviews (columns: review_id, movie_id, rating),
+ and round the result to 1 decimal place using the ROUND() function.
+ <br><br><em><strong>Hint:</strong> Use AVG() with ROUND() to format 
+ the output.</em>
+'''
+select movie_id , round(avg (rating),1)
+  from bookmyshow_reviews
+  GROUP by movie_id
+'''
+
+
+4.
+Find the minimum and maximum transaction values for a user from a table 
+paytm_transactions (columns: txn_id, user_id, amount) — show both the 
+smallest and largest transaction amounts.
+'''
+   select user_id,
+        min(amount) as smallest_transaction
+        max (amount) as largest_transaction
+        aytm_transaction
+        by user_id
+'''
+5.
+Given a table myntra_orders (columns: order_id, user_id, total_price), 
+write an SQL query to display the total number of orders, the average 
+order value (rounded to 2 decimals), and the highest order value for 
+each user_id.<br><br><em>
+<strong>Constraint:</strong> Use GROUP BY to get results per user.</em>
+
+select user_id,
+  count(order_id) as total_orders
+  round(avg (total_price), 2)as averege_order_value,
+  max(total_price) as highest_order_value
+  from myntra_orders
+  GROUP by user_id
