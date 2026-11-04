@@ -1,0 +1,132 @@
+1.Create two tables, influencers and brands, with at least 3 sample 
+rows each. Use a FULL OUTER JOIN to list all influencers and brands, 
+showing influencer_name and brand_name, matching on city. If there is 
+no match, display NULL for the missing side.<br><br><em><strong>Hint:
+</strong> Use LEFT JOIN, RIGHT JOIN, and UNION if your SQL dialect does
+ not support FULL OUTER JOIN directly.</em>
+
+ '''
+ CREATE TABLE influencers (
+    id INT PRIMARY KEY,
+    influencer_name VARCHAR(100),
+    city VARCHAR(50)
+);
+
+CREATE TABLE brands (
+    id INT PRIMARY KEY,
+    brand_name VARCHAR(100),
+    city VARCHAR(50)
+);
+ 
+
+
+ '''
+SELECT 
+    COALESCE(i.city, b.city) AS city,
+    i.influencer_name,
+    b.brand_name
+FROM influencers i
+FULL OUTER JOIN brands b ON i.city = b.city;
+
+ '''
+SELECT i.city, i.influencer_name, b.brand_name
+FROM influencers i LEFT JOIN brands b ON i.city = b.city
+UNION
+SELECT b.city, i.influencer_name, b.brand_name
+FROM influencers i RIGHT JOIN brands b ON i.city = b.city;
+
+ '''
+2.
+Given a table called playlists with columns (id, playlist_name, 
+parent_playlist_id), write a SELF JOIN query to display each 
+playlist alongside its parent playlist's name, similar to how Spotify 
+might nest playlists.
+
+'''
+  CREATE TABLE playlists (
+    id INT PRIMARY KEY,
+    playlist_name VARCHAR(100),
+    parent_playlist_id INT NULL
+);
+
+'''
+SELECT 
+    p.playlist_name AS playlist,
+    COALESCE(parent.playlist_name, 'Root Playlist') AS parent_playlist_name
+FROM playlists p
+LEFT JOIN playlists parent ON p.parent_playlist_id = parent.id;
+'''
+
+3.
+Create two tables: users and offers. Write a CROSS JOIN query to generate
+ all possible combinations of users and offers, displaying user_name 
+ and offer_title. Explain in a comment how this could be used for a 
+ Flipkart-style personalized offer campaign.
+ '''
+   CREATE TABLE users (
+    id INT PRIMARY KEY,
+    user_name VARCHAR(100)
+);
+
+CREATE TABLE offers (
+    id INT PRIMARY KEY,
+    offer_title VARCHAR(100);
+
+ '''
+'''
+   SELECT 
+    u.user_name,
+    o.offer_title
+FROM users u
+CROSS JOIN offers o;
+
+
+'''
+
+
+
+4.
+You have an employees table with columns (id, name, manager_id). Write 
+a SELF JOIN to display each employee's name along with their manager's 
+name. Then, modify your query to only show employees who do not have a 
+manager (i.e., top-level managers).
+
+'''
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    manager_id INT NULL
+);
+
+SELECT 
+    e.name AS employee_name,
+    COALESCE(m.name, 'Top-Level Manager') AS manager_name
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.id;
+'''
+
+'''
+  SELECT 
+    name AS top_level_manager
+FROM employees
+WHERE manager_id IS NULL;
+
+'''
+5.
+Use ChatGPT or Copilot to help you write a SQL query that finds all pairs 
+of users from a users table who live in the same city 
+(excluding pairs where the user is compared with themselves). 
+Paste the query and briefly describe how the AI helped you improve or 
+debug it.
+'''
+SELECT 
+    u1.user_name AS user_1,
+    u2.user_name AS user_2,
+    u1.city
+FROM users u1
+JOIN users u2 
+    ON u1.city = u2.city 
+    AND u1.id < u2.id;
+
+
+'''
