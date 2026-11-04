@@ -1,0 +1,58 @@
+1.Create two tables: AppOrders (for orders placed via a food delivery 
+app like Zomato) and InStoreOrders (for direct restaurant orders), 
+each with columns: order_id, customer_name, amount, and order_date. 
+Insert at least 3 sample records into each table.
+'''
+CREATE TABLE AppOrders (
+    order_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    amount DECIMAL(10, 2),
+    order_date DATE
+);
+
+-- Create InStoreOrders table
+CREATE TABLE InStoreOrders (
+    order_id INT PRIMARY KEY,
+    customer_name VARCHAR(100),
+    amount DECIMAL(10, 2),
+    order_date DATE
+);
+'''
+'''
+'''
+2.
+Write a SQL query using UNION to combine all unique customer names 
+from both AppOrders and InStoreOrders tables into a single list.
+'''
+ SELECT customer_name FROM AppOrders
+UNION
+SELECT customer_name FROM InStoreOrders;
+'''
+3.
+Write a SQL query using UNION ALL to display every order (including 
+duplicates if any) from both AppOrders and InStoreOrders, showing 
+order_id, customer_name, amount, and order_date.
+'''
+ SELECT order_id, customer_name, amount, order_date FROM AppOrders
+UNION ALL
+SELECT order_id, customer_name, amount, order_date FROM InStoreOrders;
+'''
+4.
+Demonstrate the difference between UNION and UNION ALL by adding a 
+duplicate customer_name in both tables, then running both queries and 
+noting the difference in the result count.<br><br><em><strong>Hint:
+</strong> UNION removes duplicates, UNION ALL does not.</em>
+'''
+INSERT INTO AppOrders (order_id, customer_name, amount, order_date) 
+VALUES (4, 'Bob Jones', 12.00, '2026-11-04');
+'''
+'''
+SELECT customer_name FROM AppOrders
+UNION
+SELECT customer_name FROM InStoreOrders;
+
+'''
+SELECT order_id, customer_name, amount, order_date FROM AppOrders
+UNION ALL
+SELECT order_id, customer_name, amount, order_date FROM InStoreOrders;
+'''
