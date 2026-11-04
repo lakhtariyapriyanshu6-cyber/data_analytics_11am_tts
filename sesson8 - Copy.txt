@@ -1,0 +1,113 @@
+1. create two table in sql database : users (user_id,suername,city)
+ and order (order_id , user_id , product,amount)insert at least 3 users
+ and 5 orders , making sure some users have no orders.
+
+ '''
+    create database fooddelivery;
+    use fooddelivery;
+ '''
+
+ '''
+     create table users(
+        order_id int auto_incriment primery key,
+        username varchar(255),
+        city varchar(255)
+
+     )
+ '''
+ '''
+    crete table orders (
+        order_id int auto_incriment primery key,
+        user_id int,
+        product varchar(255),
+        amount decimal(10,2)
+    )
+ '''
+
+ 2.Write an SQL query using INNER JOIN to list all usernames and their
+  ordered products, showing only users who have placed at least one 
+  order.
+
+
+'''
+  SELECT u.username, p.product_name
+FROM users u
+INNER JOIN orders o ON u.user_id = o.user_id
+INNER JOIN products p ON o.product_id = p.product_id;
+
+'''
+'''
+SELECT u.username, o.product_name
+FROM users u
+INNER JOIN orders o ON u.user_id = o.user_id;
+'''
+
+
+
+3.
+Write an SQL query using LEFT JOIN to display all usernames along 
+with their ordered products. For users who haven't placed any orders, 
+show NULL for the product.
+
+'''
+   SELECT u.username, o.product_name
+FROM Users u
+INNER JOIN Orders o ON u.user_id = o.user_id;
+'''
+4.
+Write an SQL query using RIGHT JOIN to show all orders and the 
+corresponding username for each order. If an order has a user_id that 
+doesn't exist in the Users table, display NULL for the username.<br>
+<br><em><strong>Hint:</strong> Try deleting one user and keeping their
+ order to test this case.</em>
+
+
+    '''
+   SELECT u.username, o.product_name
+FROM Users u
+LEFT JOIN Orders o ON u.user_id = o.user_id;
+
+ '''
+
+ '''
+SELECT o.order_id, o.product_name, u.username
+FROM Users u
+RIGHT JOIN Orders o ON u.user_id = o.user_id;
+
+
+ '''
+5.
+Suppose you want to analyze food delivery data like Zomato. Create a 
+CustomerSegments table (segment_id, segment_name), and link it to Users
+ with a foreign key. Write an SQL query to show each username, their 
+ segment name, and total order amount (use JOINs as needed).
+
+
+'''
+
+   
+CREATE TABLE CustomerSegments (
+    segment_id INT auto_incriment PRIMARY KEY,
+    segment_name VARCHAR(50) 
+);
+
+ALTER TABLE coustmersegments
+ADD COLUMN segment_id INT,
+ADD CONSTRAINT fk_user_segment 
+FOREIGN KEY (segment_id) REFERENCES CustomerSegments(segment_id);
+
+
+'''
+
+'''
+    SELECT 
+    u.username, 
+    COALESCE(s.segment_name, 'Unassigned') AS segment_name, 
+    SUM(COALESCE(o.amount, 0)) AS total_order_amount
+FROM Users u
+LEFT JOIN CustomerSegments s ON u.segment_id = s.segment_id
+LEFT JOIN Orders o ON u.user_id = o.user_id
+GROUP BY u.user_id, u.username, s.segment_name
+ORDER BY total_order_amount DESC;
+
+'''
