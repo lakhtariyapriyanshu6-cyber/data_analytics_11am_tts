@@ -1,0 +1,129 @@
+1.
+Create a SQL view named TopRatedRestaurants that selects the restaurant
+ name, average rating, and total number of reviews from a table of 
+ Zomato-style restaurant reviews, showing only restaurants with an 
+ average rating above 4.0.
+
+ '''
+ CREATE VIEW TopRatedRestaurants AS
+SELECT 
+    restaurant_name, 
+    avg_rating, 
+    total_reviews
+FROM 
+    restaurant_summary
+WHERE 
+    avg_rating > 4.0;
+ '''
+
+
+2.
+Update the TopRatedRestaurants view to also include the city column
+ from the original restaurants table by joining the relevant tables.
+ <br><br><em><strong>Hint:</strong> Use an INNER JOIN to combine data 
+ from both tables in your view definition.</em>
+
+ '''
+ CREATE OR REPLACE VIEW TopRatedRestaurants AS
+SELECT 
+    r.restaurant_name,
+    r.city,
+    rev.avg_rating,
+    rev.total_reviews
+FROM 
+    restaurants r
+INNER JOIN 
+    restaurant_reviews rev ON r.restaurant_id = rev.restaurant_id
+WHERE 
+    rev.avg_rating > 4.0;
+ '''
+
+
+3.
+Try to update the average rating column directly through the TopRatedRe
+staurants view and observe what error or limitation occurs. Write down
+ the exact error message and explain why this happens based on SQL view
+  limitations.
+
+  '''
+     CREATE VIEW TopRatedRestaurants AS
+SELECT r.restaurant_id, r.name, AVG(rev.rating) AS average_rating
+FROM restaurants r
+JOIN reviews rev ON r.restaurant_id = rev.restaurant_id
+GROUP BY r.restaurant_id, r.name;
+
+
+
+
+-UPDATE TopRatedRestaurants 
+SET average_rating = 4.8 
+WHERE restaurant_id = 1;
+
+
+**my sql **
+
+''
+  Error Code: 1288. The target table TopRatedRestaurants of
+   the UPDATE is not updatable
+''
+**postgreasql**
+
+''
+ERROR: cannot update view "TopRatedRestaurants"
+
+DETAIL: Views containing GROUP BY or aggregate functions 
+are not automatically updatable.
+''
+
+**sqlserver ma **
+'''
+Msg 4406, Level 16, State 1 - Update or insert of view 'TopRatedRestaurants' failed because 
+it contains a derived or constant field.
+'''
+
+  '''
+4.
+Create a view called DailyOrderSummary that shows, for each date, the 
+total number of food orders and the total revenue from a Swiggy-style 
+orders table. Ensure the view only includes dates from the last 30 days
+.<br><br><em><strong>Constraint:</strong> Use WHERE and GROUP BY clause
+s in your view definition.</em>
+
+'''
+CREATE VIEW DailyOrderSummary AS
+SELECT 
+    order_date,
+    COUNT(order_id) AS total_orders,
+    SUM(order_amount) AS total_revenue
+FROM 
+    orders
+WHERE 
+    order_date >= CURRENT_DATE - INTERVAL '30 days'
+GROUP BY 
+    order_date;
+'''
+
+
+5.
+List 3 good practices you should follow when creating SQL views for 
+analytics dashboards, and for each, give a one-line example related to
+ a Flipkart sales reporting scenario,
+
+ '''
+  CREATE VIEW vw_flipkart_order_summary AS 
+SELECT order_id, customer_id, total_amount, order_date 
+FROM orders;
+
+
+CREATE VIEW vw_flipkart_daily_sales AS 
+SELECT order_date, SUM(total_amount) AS daily_revenue 
+FROM orders 
+GROUP BY order_date;
+
+
+CREATE VIEW vw_flipkart_category_revenue AS 
+SELECT p.category_id, SUM(oi.quantity * oi.unit_price) AS total_revenue 
+FROM order_items oi 
+JOIN products p ON oi.product_id = p.product_id 
+GROUP BY p.category_id;
+ '''
