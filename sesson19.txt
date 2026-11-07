@@ -1,0 +1,80 @@
+1.Run a SELECT query on a large 'orders' table (at least 10,000 rows) 
+to find all orders for a specific user_id and measure the query 
+execution time.
+
+'''
+-- query's starting time  (MySQL in)
+SET profiling = 1;
+
+--  user_id 
+SELECT * 
+FROM orders 
+WHERE user_id = 1042;
+
+-- Execution Time
+SHOW PROFILES;
+'''
+2.
+Create an index on the user_id column of the 'orders' table and re-run 
+the same SELECT query to measure the new execution time.<br><br><em>
+<strong>Hint:</strong> Use CREATE INDEX idx_user_id ON orders(user_id); 
+and compare the times before and after.</em>
+
+'''
+-- 1. Index બનાવવો
+CREATE INDEX idx_user_id ON orders(user_id);
+
+-- 2. સમાન ક્વેરી ફરી ચલાવવી
+SELECT * 
+FROM orders 
+WHERE user_id = 1042;
+
+-- 3. નવો Execution Time ચેક કરવો
+SHOW PROFILES;
+'''
+3.
+Use the EXPLAIN PLAN command to analyze how your SELECT query runs before
+ and after adding the index, and write down the key differences you observe
+  in the output.
+
+  '''
+  EXPLAIN SELECT * FROM orders WHERE user_id = 1042;
+  '''
+4.
+Write a query for a 'products' table that avoids a full table scan by 
+using an index on the 'category' column to fetch all products in a specific 
+category.
+
+'''
+-- Step 1: Category 
+CREATE INDEX idx_category ON products(category);
+
+-- Step 2: Specific category calect query
+SELECT product_id, product_name, price 
+FROM products 
+WHERE category = 'Electronics';
+'''
+5.
+Suppose your SELECT query on the 'orders' table is still slow even after
+ adding an index. Use EXPLAIN PLAN and research at least one more optimization
+  technique (other than indexing) using an AI tool like ChatGPT or Copilot,
+   and describe how you would apply it.
+
+   '''
+      SELECT * 
+FROM orders 
+WHERE user_id = 1042 
+ORDER BY order_date DESC 
+LIMIT 10;
+
+
+CREATE INDEX idx_user_order_date ON orders(user_id,
+ order_date DESC, total_amount);
+
+
+ SELECT order_id, user_id, order_date, total_amount 
+FROM orders 
+WHERE user_id = 1042 
+ORDER BY order_date DESC 
+LIMIT 10;
+   '''
